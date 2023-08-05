@@ -30,8 +30,12 @@ func ConnectDb() {
 
 	log.Println("connected")
 	db.Logger = logger.Default.LogMode(logger.Info)
-	log.Println("running migrations")
-	db.AutoMigrate(&models.Cat{})
+
+	runMigrate := os.Getenv("MIGRATE") == "true"
+	if runMigrate {
+		log.Println("running migrations")
+		db.AutoMigrate(&models.Cat{})
+	}
 
 	// Seed data if table is empty
 	var count int64

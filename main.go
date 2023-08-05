@@ -28,6 +28,9 @@ func main() {
 	app.Post("/cats", routes.CreateCat)
 	app.Get("/cats", routes.GetCats)
 	app.Get("/cats/:id", routes.GetCat)
+	app.Get("/search", routes.SearchCats)
+	app.Delete("/cats/:id", routes.DeleteCat)
+	app.Patch("/cats/:id", routes.UpdateCat)
 
 	app.Listen(":8080")
 }
